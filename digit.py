@@ -1,4 +1,4 @@
-import tkinter as tk
+fimport tkinter as tk
 import numpy as np
 from PIL import Image, ImageDraw
 import tensorflow as tf
@@ -15,26 +15,19 @@ class DigitDrawer:
         self.root = tk.Tk()
         self.root.title("Digit Recognition")
         self.root.geometry("350x500")
-        
         self.canvas = tk.Canvas(self.root, width=280, height=280, bg='white')
         self.canvas.pack(pady=20)
-        
         self.image = Image.new("L", (280, 280), 255)  
         self.draw_pil = ImageDraw.Draw(self.image)
-        
         self.canvas.bind("<B1-Motion>", self.draw)
         self.canvas.bind("<Button-1>", self.draw)
-        
         tk.Button(self.root, text="Predict", command=self.predict, 
                  bg='green', fg='white', font=('Arial', 12)).pack(pady=10)
-        
         tk.Button(self.root, text="Clear", command=self.clear, 
                  bg='red', fg='white', font=('Arial', 12)).pack(pady=5)
-        
         self.result = tk.Label(self.root, text="Draw a digit and click Predict", 
                               font=('Arial', 14), bg='lightgray', pady=10)
         self.result.pack(pady=20, fill='x', padx=20)
-        
         self.debug_canvas = tk.Canvas(self.root, width=140, height=140, bg='black')
         self.debug_canvas.pack(pady=10)
         tk.Label(self.root, text="Processed Image (28x28)", font=('Arial', 10)).pack()
